@@ -15,13 +15,13 @@ $("form").submit(function (event) {
           alert("Superheroe no existe o quizás aun es desconocido");
         // Se valida que los valores ingresados se encuentren disponibles para utilizarlos
         } else {
-          let conexiones = data.connections["group-affiliation"] || "No disponible";
-          let publicado = data.biography.publisher || "No disponible";
+          let conexiones = data.connections["group-affiliation"];
+          let publicado = data.biography.publisher;
           let ocupacion = data.work.occupation || "No disponible";
-          let primeraAparicion = data.biography["first-appearance"] || "No disponible";
-          let altura = data.appearance.height.join(", ") || "No disponible";
-          let peso = data.appearance.weight.join(", ") || "No disponible";
-          let alianzas = data.biography.aliases.join(", ") || "No disponible";
+          let primeraAparicion = data.biography["first-appearance"];
+          let altura = data.appearance.height.join(", ");
+          let peso = data.appearance.weight.join(", ");
+          let alianzas = data.biography.aliases.join(", ");
         // Se crea la card con la información del superhero que se desea mostrar y el gráfico
           $("#superInfo").html(`
                     <div class="row pt-5">
