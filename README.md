@@ -3,7 +3,7 @@ Por medio de la utilización de Superhero API se obtendrán los datos de superh�
 
 ## Dependencias Utilizadas
 * Bootstrap https://getbootstrap.com/docs/5.3/getting-started/introduction/
-* Google Fonts
+* Google Fonts https://fonts.google.com/
 * Jquery https://jquery.com/
 * CanvasJS https://canvasjs.com/
 * SuperHero API https://www.superheroapi.com/
