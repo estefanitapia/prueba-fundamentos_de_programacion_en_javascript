@@ -17,7 +17,7 @@ $("form").submit(function (event) {
         } else {
           let conexiones = data.connections["group-affiliation"];
           let publicado = data.biography.publisher;
-          let ocupacion = data.work.occupation || "No disponible";
+          let ocupacion = data.work.occupation;
           let primeraAparicion = data.biography["first-appearance"];
           let altura = data.appearance.height.join(", ");
           let peso = data.appearance.weight.join(", ");
