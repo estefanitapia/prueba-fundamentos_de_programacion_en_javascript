@@ -15,18 +15,18 @@ $("form").submit(function (event) {
           alert("Superheroe no existe o quizás aun es desconocido");
         // Se valida que los valores ingresados se encuentren disponibles para utilizarlos
         } else {
-          let conexiones = data.connections["group-affiliation"];
-          let publicado = data.biography.publisher;
-          let ocupacion = data.work.occupation;
-          let primeraAparicion = data.biography["first-appearance"];
-          let altura = data.appearance.height.join(", ");
-          let peso = data.appearance.weight.join(", ");
-          let alianzas = data.biography.aliases.join(", ");
+          let conexiones = check(data.connections["group-affiliation"], "personal");
+          let publicado = check(data.biography.publisher, "personal");
+          let ocupacion = check(data.work.occupation, "personal");
+          let primeraAparicion = check(data.biography["first-appearance"], "personal");
+          let altura = check(data.appearance.height.join(", "), "personal");
+          let peso = check(data.appearance.weight.join(", "), "personal");
+          let alianzas = check(data.biography.aliases.join(", "), "personal");
         // Se crea la card con la información del superhero que se desea mostrar y el gráfico
           $("#superInfo").html(`
                     <div class="row pt-5">
                         <div class="col-md-3 my-auto ">
-                            <img class="rounded" src="${data.image.url}" height="390px" alt="${data.name}" />
+                            <img class="rounded" src="${check(data.image.url, "img")}" height="390px" alt="${data.name}" />
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
@@ -46,16 +46,16 @@ $("form").submit(function (event) {
                     </div>
                 `);
           // Son las variables con la información de los superpoderes que se quiere graficar
-          let estadisticas = [
-            { y: data.powerstats.intelligence, label: "Inteligencia" },
-            { y: data.powerstats.strength, label: "Fuerza" },
-            { y: data.powerstats.speed, label: "Velocidad" },
-            { y: data.powerstats.durability, label: "Resistencia" },
-            { y: data.powerstats.power, label: "Poder" },
-            { y: data.powerstats.combat, label: "Combate" },
+          const estadisticas = [
+            { y: check(data.powerstats.intelligence, null), label: "Inteligencia" },
+            { y: check(data.powerstats.strength, null), label: "Fuerza" },
+            { y: check(data.powerstats.speed, null), label: "Velocidad" },
+            { y: check(data.powerstats.durability, null), label: "Resistencia" },
+            { y: check(data.powerstats.power, null), label: "Poder" },
+            { y: check(data.powerstats.combat, null),  label: "Combate" },
           ];
           // Variable de configuración del gráfico
-          let config = {
+          const config = {
             theme: "light1",
             animationEnabled: true,
             title: {
@@ -85,3 +85,12 @@ $("form").submit(function (event) {
     });
   }
 });
+
+// Función que chequea el tipo de dato y lo cambia en caso de ser null o -
+function check (dato,tipo){
+  if (tipo === "personal"){
+      return dato.startsWith("-") ? "No disponible" : dato ; 
+  } else if (tipo === "img"){ return dato === "https://www.superherodb.com/pictures2/portraits/10/100/1010.jpg"  ? "https://i.etsystatic.com/42028018/r/il/8d268a/4813622326/il_300x300.4813622326_fee1.jpg" : dato ;
+  }
+  else {return dato === "null"  ? Math.ceil(Math.random() * 100) : dato ; }
+  };
