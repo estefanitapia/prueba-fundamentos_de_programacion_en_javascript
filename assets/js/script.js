@@ -59,7 +59,7 @@ $("form").submit(function (event) {
             theme: "light1",
             animationEnabled: true,
             title: {
-              text: "Estadísticas " + data.name,
+              text: "Estadísticas de poder para " + data.name,
               fontSize: 22,
               fontFamily: "roboto",
               fontWeight: "bold",
